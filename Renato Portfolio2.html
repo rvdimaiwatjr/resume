@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renato Dimaiwat - ELV Technical Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6C63FF;  /* Purple accent */
+            --secondary: #333333; /* Dark gray */
+            --light: #f8f9fa;
+            --dark: #212529;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: white;
+            color: var(--secondary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 10%;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 5rem 10%;
+            gap: 4rem;
+            min-height: 80vh;
+        }
+        
+        .hero-content {
+            flex: 1;
+        }
+        
+        .greeting {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .hero p {
+            margin-bottom: 2rem;
+            max-width: 500px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: var(--light);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .job-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .company {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .date {
+            color: #666;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .experience-item ul {
+            padding-left: 1.5rem;
+        }
+        
+        .experience-item li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .experience-item li::before {
+            content: '▹';
+            position: absolute;
+            left: -1.2rem;
+            color: var(--primary);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 8px 6px 0 0;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        .tech-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Certifications Section */
+        .certifications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .certification-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .certification-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-org {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--primary), #5a52d3);
+            color: #f2bb05;
+        }
+        
+        #contact .section-title {
+            color: white;
+        }
+        
+        #contact .section-title::after {
+            background: #f2bb05;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            min-width: 250px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s;
+        }
+        
+        .contact-card:hover {
+            color: #f2bb05;
+            transform: translateY(-5px);
+        }
+        
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+     
+        .contact-card h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero, .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p, .about-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                display: none; /* Consider adding a mobile menu */
+            }
+            
+            .dropdown-content {
+                left: -50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Portfolio</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact</a>
+            <a href="resume.pdf" download="Renato_Dimaiwat_Resume.pdf" class="btn btn-primary">Download CV</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <p class="greeting"><span style="font-size: 2.5rem;">Hello<span style="font-size: 2.5rem;">👋</span> I am</p>
+            <h1><span style="font-size: 5rem;">Renato Dimaiwat</h1>
+            <h2>ELV Senior Technician</h2>
+            <p>Providing expert technical support for Extra Low Voltage systems with <strong>13+ years of field experience</strong> in design, installation, and troubleshooting of integrated Security systems.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+                <a href="#about" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src=photo.png style="width: 100%; height: 400px; background-color: #f0f0f0; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #999;"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>ELV Senior Technician with <strong>13+ years of experience</strong> in advanced electronic systems, technical support, and infrastructure maintenance. Expertise in <strong>CCTV, Access Control Systems, Networking, and IT Support</strong>, with a proven track record of optimizing system performance through diagnostics, preventative maintenance, and precise installations.</p>
+                <p>Adept at troubleshooting complex technical issues and delivering top-tier support in high-stakes environments.</p>
+                <div class="cta-buttons" style="margin-top: 2rem;">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src=photo.jpeg style="width: 100%; height: 300px; background-color: #f0f0f0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                    <span style="color: #999;"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section" style="background-color: var(--light);">
+        <h2 class="section-title">Work Experience</h2>
+        
+        <div class="experience-item">
+            <h3 class="job-title">ELV Senior Techncian</h3>
+            <span class="company">Capital Security Systems</span>
+            <span class="date">Feb 2018 - Present | Doha, Qatar</span>
+            <ul>
+                <li>Experience in Windows OS PCs, peripherals and Application Support.</li>
+                    <li>Configured Cisco switches (VLAN, Routing) and troubleshooting.</li>
+                    <li>Performed system diagnostics and preventative maintenance.</li>
+                    <li>Conducted site surveys, installations, testing and commissioning.</li>
+                    <li>Installing/configuring computer hardware, software, systems and networks.</li>
+                    <li>Responsible for monitoring, diagnosing, installing, configuring, and maintaining CCTV and Access control system.</li>
+                    <li>Carrying out scheduled preventative maintenance and servicing equipment.</li>
+                    <li>Following written, verbal, and telephonic instructions.</li>
+                    <li>Technology: CCTV (Pelco, IndigoVision), ACS (Lenel On guard), Barrier Systems (Came, Centurion).</li>
+            </ul>
+        </div>
+        
+        <div class="experience-item">
+            <h3 class="job-title">Technical Field Engineer</h3>
+            <span class="company">Circuit Solutions Inc.</span>
+            <span class="date">May 2011 - Feb 2018 | Pasig City, Philippines</span>
+            <ul>
+                <li>Provided technical support for CCTV, Traffic lights, and Access Control Systems.</li>
+                    <li>Installing/configuring computer hardware, software, systems and networks..</li>
+                    <li>Designed system layouts for security projects.</li>
+                    <li>Conducted site surveys and client training.</li>
+                    <li>Technology: HuperVision and Hikvision for CCTV, GeoVision for ACS.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Key Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+              <img src="https://imgur.com/R74ebJd.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                <div class="project-content">
+                    <h3 class="project-title">Qatar Foundation</h3>
+                    <p>Responsible for routine preventive and corrective maintenance of the site's integrated 
+                CCTV, Barrier, Intercom and Access Control systems. Responsible for overseeing the installation, and troubleshooting of CCTV systems and Access control system and related security equipment. <strong>(2022 - 2025)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Pelco</span>
+                            <span class="tech-tag">Hikvision</span>
+                            <span class="tech-tag">Dahua</span>
+                            <span class="tech-tag">Lenel OnGuard</span>
+                            <span class="tech-tag">Intercom</span>
+                            <span class="tech-tag">Barriers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                    <img src="https://imgur.com/c7LLddq.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                    <div class="project-content">
+                        <h3 class="project-title">Qatar National Convention Center | FIFA World Cup 2022 Media Center</h3>
+                        <p>Led the installation and configuration of access control system and CCTV devices, featuring biometric integration and centralized monitoring. Responsible for routine preventive and corrective maintenance of the site's integrated 
+                CCTV, Barrier and Access Control systems. Ensured 24/7 system availability, incident response, and compliance with security standards.<strong>(June 2022 - February 2023)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Pelco CCTV</span>
+                            <span class="tech-tag">Lenel Onguard Access control</span>
+                            <span class="tech-tag">Centurion/Came Barrier</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                    <img src="https://imgur.com/IiXKpXu.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                    <div class="project-content">
+                        <h3 class="project-title">Qatar Airways</h3>
+                        <p>Responsible for routine preventive and corrective maintenance of the site's integrated 
+                CCTV and Access Control systems.<strong>(2018 - Present)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">IndigoVision CCTV</span>
+                            <span class="tech-tag">Lenel Onguard Access Control System</span>
+                            <span class="tech-tag">Gunnebo Speedgate</span>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="project-card">
+                    <img src="https://imgur.com/QtDre95.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                    <div class="project-content">
+                        <h3 class="project-title">Doha International Airport</h3>
+                        <p>Responsible for routine preventive and corrective maintenance of the site's integrated 
+                CCTV and Access Control systems. Monitored and maintained that all systems are functioning properly.<strong>(2018 - Present)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Milestone CCTV</span>
+                            <span class="tech-tag">Lenel Onguard Access Control System</span>
+                        </div>
+                    </div>
+                </div>
+             
+                <div class="project-card">
+                    <img src="https://imgur.com/NEClTti.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                    <div class="project-content">
+                        <h3 class="project-title">Qatar Olympic Committee</h3>
+                        <p>Responsible for routine preventive and corrective maintenance of site CCTV, Barriers and Access Control systems. Monitored and maintained that all systems are functioning properly.<strong>(2018 - Present)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">IndigoVision CCTV</span>
+                            <span class="tech-tag">Lenel Onguard Access Control System</span>
+                            <span class="tech-tag">Centurion barrier</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="https://imgur.com/Vk8JjIx.png" alt="Qatar Foundation" style="max-width: 100%; border radius: 8px;">
+                    <div class="project-content">
+                        <h3 class="project-title">Woqod</h3>
+                        <p>Responsible for routine preventive and corrective maintenance Access Control systems. Monitored and maintained that all systems are functioning properly. Conducted monthly checks and maintenance on Access control System in Woqod tower and all Woqod Petrol Station.<strong>(2018 - Present)</strong></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Lenel Onguard Access Control System</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section" style="background-color: var(--light);">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-shield-alt"></i> Technical Skills</h3>
+                <ul>
+                    <li>CCTV (Hikvision, Dahua, Pelco)</li>
+                        <li>Access Control (Lenel OnGuard)</li>
+                        <li>Barrier Systems (Came, Centurion,BFT)</li>
+                        <li>Biometrics Systems</li>
+                        <li>Structured Cabling</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-network-wired"></i> Networking</h3>
+                <ul>
+                    <li>Cisco Switch Configuration</li>
+                        <li>VLAN, Routing</li>
+                        <li>TCP/IP Troubleshooting</li>
+                        <li>Network Diagnostics</li>
+                        <li>Wireless Networks</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fas fa-laptop-code"></i> IT Support</h3>
+                <ul>
+                    <li>Windows OS/Server</li>
+                        <li>PC Assembly & Maintenance</li>
+                        <li>Hardware/Software Configuration</li>
+                        <li>System Administration</li>
+                        <li>Technical Documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" style="background-color: #f1f5f9;">
+        <div class="container">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-list">
+                <div class="certification-item">
+                    <h3 class="certification-title">Google IT Support Professional Certificate</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Issued June 2024 | No Expiry</p>
+                </div>
+                
+                <div class="certification-item">
+                    <h3 class="certification-title">IT Security: Defense Against Digital Dark Arts</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Completed July 2024</p>
+                </div>
+                
+                <div class="certification-item">
+                    <h3 class="certification-title">Networking Basics & Device Configuration</h3>
+                    <p class="certification-org">Cisco Networking Academy</p>
+                    <p class="certification-date">Completed March 2025</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Computer Hardware Basics</h3>
+                    <p class="certification-org">Cisco Networking Academy</p>
+                    <p class="certification-date">Completed October 2023</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Operating Systems Basics</h3>
+                    <p class="certification-org">Cisco Networking Academy</p>
+                    <p class="certification-date">Completed November 2023</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">The Bits and Bytes of Computer Networking</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Completed May 2024</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Operating Systems and You Becoming a Power User</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Completed May 2024</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">System Administration and IT Infrastructure Services</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Completed June 2024</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Technical Support Fundamental</h3>
+                    <p class="certification-org">Google</p>
+                    <p class="certification-date">Completed April 2024</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Introduction to Cybersecurity</h3>
+                    <p class="certification-org">Cisco Networking Academy</p>
+                    <p class="certification-date">Completed February 2025</p>
+                </div>
+
+                <div class="certification-item">
+                    <h3 class="certification-title">Networking Basics</h3>
+                    <p class="certification-org">Cisco Networking Academy</p>
+                    <p class="certification-date">Completed March 2025</p>
+                </div>
+                
+                <div class="certification-item">
+                    <h3 class="certification-title">Panduit Structured Cabling</h3>
+                    <p class="certification-org">Subic, Olongapo City PH</p>
+                    <p class="certification-date">November 2015</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-methods">
+                <div class="contact-card" >
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:rvdimaiwatjr@gmail.com">rvdimaiwatjr@gmail.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>Linkedin</h3>
+                    <a href="https://linkedin.com/in/your-profile">linkedin.com/in/renatodimaiwatjr</a>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <a href="tel:+974667333722">+974 66 7333 722 (Qatar)</a>
+                    <a href="tel:+639958103094">+63 908 719 8390 (PH)</a>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p style="color: white;">Old Airport, Doha, Qatar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2025 Renato Dimaiwat Jr. | ELV Technical Specialist</p>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.experience-card, .skill-category, .certification-item');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.animationPlayState = 'running';
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Dark Mode Toggle Functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Check for saved user preference or system preference
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (localStorage.getItem('darkMode') === null && prefersDarkScheme.matches)) {
+                document.body.classList.add('dark-mode');
+            }
+
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+            });
+        });
+    </script>
+</body>
+</html>
